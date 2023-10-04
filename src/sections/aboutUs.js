@@ -33,7 +33,7 @@ const AboutUs = () => {
                 </Text>
                 <Text as="li">
                   <IoIosCheckmarkCircle />
-                  <p class="leading-2 text-sm">we believe in hard work pays off, and no one's hard work is unrecognized.</p>
+                  <p className="leading-2 text-sm">we believe in hard work pays off, and no one's hard work is unrecognized.</p>
                 </Text>
                 <Text as="li">
                   <IoIosCheckmarkCircle />
