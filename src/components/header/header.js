@@ -51,7 +51,7 @@ export default function Header({ className }) {
 
 const styles = {
   headerBtn: {
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'rgba(69, 87, 97, 0.8)',
     fontSize: '16px',
     fontWeight: 'bold',
     letterSpacing: '-0.16px',
@@ -59,10 +59,10 @@ const styles = {
     border: '2px solid',
     borderColor: 'primary',
     color: 'primary',
-    padding: '8px 24px',
+    padding: '8px 18px',
     display: ['none', null, null, null, 'inline-block'],
     ml: ['0', null, null, 'auto', '0'],
-    mr: ['0', null, null, '20px', '0'],
+    mr: ['0', null, null, '10px', '0'],
     '&:hover': {
       color: '#fff',
     },
@@ -70,16 +70,16 @@ const styles = {
   header: {
     color: 'text_white',
     fontWeight: 'normal',
-    py: '25px',
+    py: '8px',
     width: '100%',
     position: 'fixed',
     top: 0,
     left: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(174, 179, 181, 0.8)',
     transition: 'all 0.4s ease',
 
     '&.sticky': {
-      backgroundColor: 'background',
+      backgroundColor: 'rgba(174, 179, 181, 0.8)',
       color: 'text',
       py: '15px',
       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
@@ -111,7 +111,7 @@ const styles = {
       },
       '&:hover, &.active': {
         color: 'primary',
-      },
+      },    
     },
   },
 };

@@ -7,7 +7,7 @@ export default function Footer() {
     <footer
       sx={{
         variant: 'layout.footer',
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(69, 87, 97, 0.8)',
       }}
     >
       <Container
@@ -15,8 +15,8 @@ export default function Footer() {
           variant: 'layout.toolbar',
           justifyContent: ['center', null, null, 'space-between'],
           flexDirection: ['column', null, null, null, 'row'],
-          paddingTop: [30, 40],
-          paddingBottom: [30, 65],
+          paddingTop: [10, 20],
+          paddingBottom: [10, 35],
         }}
       >
         <Box sx={styles.left}>
