@@ -1,13 +1,9 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
 import { initGA, logPageView } from 'analytics';
-import 'swiper/swiper-bundle.min.css';
-import 'rc-drawer/assets/index.css';
-import 'react-modal-video/css/modal-video.min.css';
 import 'typeface-dm-sans';
-// import '../theme/globals.css';
- import 'tailwindcss/tailwind.css'
-
+import 'tailwindcss/tailwind.css';
+import '../theme/globals.css';
 
 export default function CustomApp({ Component, pageProps }) {
   useEffect(() => {

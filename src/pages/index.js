@@ -1,40 +1,27 @@
 import React from 'react';
-import { ThemeProvider } from 'theme-ui';
-import { StickyProvider } from 'contexts/app/app.provider';
-import theme from 'theme';
 import SEO from 'components/seo';
 import Layout from 'components/layout';
-import styles from "../theme/contact.module.css";
-
 import Banner from 'sections/banner';
-import Services from 'sections/services';
-import Testimonials from 'sections/testimonials';
-import CustomerSupport from 'sections/customer-support';
-import Feature from 'sections/feature';
-import VideoOne from 'sections/video-one';
-import CallToAction from 'sections/call-to-action';
-import BoostAgencies from 'sections/aboutUs';
+import Services from 'sections/customer-support';
+import HowWeWork from 'sections/video-one';
 import AboutUs from 'sections/aboutUs';
-import ContactUs from 'sections/contactUs';
+import TechStack from 'sections/call-to-action';
+import Testimonials from 'sections/testimonials';
+import Contact from 'sections/feature';
 
 export default function IndexPage() {
   return (
-    <ThemeProvider theme={theme}>
-      <StickyProvider>
-        <Layout>
-          <SEO title="SthithaKoushalam.Tech" />
-          <Banner />
-          <CustomerSupport />
-
-          {/* <Services /> */}
-          <AboutUs />
-          {/* <VideoOne /> */}
-          <Testimonials />
-          <Feature />
-          {/* <CallToAction /> */}
-          {/* <ContactUs /> */}
-        </Layout>
-      </StickyProvider>
-    </ThemeProvider>
+    <>
+      <SEO title="SthithaKoushalam.Tech — India's Next-Gen Tech Startup" />
+      <Layout>
+        <Banner />
+        <Services />
+        <HowWeWork />
+        <AboutUs />
+        <TechStack />
+        <Testimonials />
+        <Contact />
+      </Layout>
+    </>
   );
 }

@@ -1,117 +1,152 @@
-/** @jsx jsx */
-import { jsx, Container, Flex, Button, Box } from 'theme-ui';
-import { keyframes } from '@emotion/core';
-import { IoIosUnlock } from 'react-icons/io';
-import { NavLink, Link } from 'components/link';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-import Logo from 'components/logo';
-
-import { DrawerProvider } from 'contexts/drawer/drawer.provider';
-import MobileDrawer from './mobileDrawer';
+import React, { useState, useEffect } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 import menuItems from './header.data';
+import logo from 'assets/2.png';
 
-export default function Header({ className }) {
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <DrawerProvider>
-      <header sx={styles.header} className={className}>
-        <Container sx={styles.container}>
-          <Logo />
+    <>
+      <header
+        style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+          transition: 'all 0.3s ease',
+          backgroundColor: scrolled ? 'rgba(255,255,255,0.92)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.06)' : 'none',
+        }}
+      >
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
+          {/* Logo */}
+          <ScrollLink to="banner" smooth duration={500} offset={-80} style={{ cursor: 'pointer', flexShrink: 0 }}>
+            <img src={logo} alt="SthithaKoushalam Tech" style={{ height: 44, width: 'auto' }} />
+          </ScrollLink>
 
-          <Flex as="nav" sx={styles.nav}>
+          {/* Desktop nav */}
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 40 }} className="desktop-nav">
             {menuItems.map(({ path, label }, i) => (
               <ScrollLink
-                activeClass="active"
-                sx={styles.nav.navLink}
-                to={path}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
                 key={i}
+                to={path}
+                spy
+                smooth
+                offset={-80}
+                duration={500}
+                style={{
+                  fontSize: 14, fontWeight: 500, cursor: 'pointer',
+                  color: scrolled ? '#374151' : 'rgba(255,255,255,0.75)',
+                  transition: 'color 0.2s',
+                  letterSpacing: '-0.01em',
+                }}
+                onMouseEnter={e => e.target.style.color = scrolled ? '#8D448B' : '#ffffff'}
+                onMouseLeave={e => e.target.style.color = scrolled ? '#374151' : 'rgba(255,255,255,0.75)'}
               >
                 {label}
               </ScrollLink>
             ))}
-          </Flex>
+          </nav>
 
-          {/* <Link
-            path="/"
-            ml={2}
-            label="Register Now"
-            sx={styles.headerBtn}
-            variant="buttons.primary"
-          /> */}
+          {/* CTA + mobile toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <ScrollLink
+              to="contact"
+              smooth
+              offset={-80}
+              duration={500}
+              style={{
+                cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '9px 20px', borderRadius: 100,
+                fontSize: 13, fontWeight: 600,
+                background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)',
+                color: '#fff',
+                transition: 'all 0.2s',
+                boxShadow: '0 2px 16px rgba(141,68,139,0.35)',
+              }}
+              className="cta-btn"
+              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              Get In Touch
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </ScrollLink>
 
-          <MobileDrawer />
-        </Container>
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                display: 'none', padding: 8, border: 'none', background: 'transparent',
+                cursor: 'pointer', borderRadius: 8,
+                color: scrolled ? '#374151' : 'rgba(255,255,255,0.85)',
+              }}
+              className="hamburger-btn"
+              aria-label="Menu"
+            >
+              {mobileOpen
+                ? <svg width={22} height={22} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                : <svg width={22} height={22} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+              }
+            </button>
+          </div>
+        </div>
       </header>
-    </DrawerProvider>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div style={{
+          position: 'fixed', top: 72, left: 0, right: 0, zIndex: 99,
+          background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(0,0,0,0.06)',
+          padding: '16px 24px 24px',
+        }}>
+          {menuItems.map(({ path, label }, i) => (
+            <ScrollLink
+              key={i}
+              to={path}
+              spy smooth offset={-80} duration={500}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                display: 'block', padding: '12px 16px', borderRadius: 10,
+                fontSize: 15, fontWeight: 500, color: '#374151', cursor: 'pointer',
+                marginBottom: 2,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#f5f3ff'; e.currentTarget.style.color = '#8D448B'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#374151'; }}
+            >
+              {label}
+            </ScrollLink>
+          ))}
+          <ScrollLink
+            to="contact" smooth offset={-80} duration={500}
+            onClick={() => setMobileOpen(false)}
+            style={{
+              display: 'block', marginTop: 12, padding: '13px 20px', borderRadius: 100,
+              textAlign: 'center', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer',
+              background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)',
+            }}
+          >
+            Get In Touch
+          </ScrollLink>
+        </div>
+      )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .cta-btn { display: none !important; }
+          .hamburger-btn { display: block !important; }
+        }
+      `}</style>
+    </>
   );
 }
-
-const styles = {
-  headerBtn: {
-    backgroundColor: 'rgba(69, 87, 97, 0.8)',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    letterSpacing: '-0.16px',
-    borderRadius: '5px',
-    border: '2px solid',
-    borderColor: 'primary',
-    color: 'primary',
-    padding: '8px 18px',
-    display: ['none', null, null, null, 'inline-block'],
-    ml: ['0', null, null, 'auto', '0'],
-    mr: ['0', null, null, '10px', '0'],
-    '&:hover': {
-      color: '#fff',
-    },
-  },
-  header: {
-    color: 'text_white',
-    fontWeight: 'normal',
-    py: '8px',
-    width: '100%',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    backgroundColor: 'rgba(174, 179, 181, 0.8)',
-    transition: 'all 0.4s ease',
-
-    '&.sticky': {
-      backgroundColor: 'rgba(174, 179, 181, 0.8)',
-      color: 'text',
-      py: '15px',
-      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
-    },
-  },
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    width: [null, null, null, null, null, null, '1390px'],
-    '@media screen and (max-width: 960px)': {
-      justifyContent: 'space-between',
-    },
-  },
-  nav: {
-    mx: 'auto',
-    '@media screen and (max-width: 960px)': {
-      display: 'none',
-    },
-    navLink: {
-      fontSize: '16px',
-      color: '#02073E',
-      fontWeight: '400',
-      cursor: 'pointer',
-      lineHeight: '1.2',
-      mr: '48px',
-      transition: '500ms',
-      ':last-child': {
-        mr: '0',
-      },
-      '&:hover, &.active': {
-        color: 'primary',
-      },    
-    },
-  },
-};

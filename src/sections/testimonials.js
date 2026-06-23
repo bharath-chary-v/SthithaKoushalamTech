@@ -1,209 +1,108 @@
-import React, { useState } from 'react';
-import SwiperCore, { Thumbs, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Box, Container, Text, Heading } from 'theme-ui';
-import BlockTitle from 'components/block-title';
-import Image from 'components/image';
+import React from 'react';
 
-import img1 from 'assets/testi-1-1.png';
-import img2 from 'assets/testi-1-2.png';
-import img3 from 'assets/testi-1-3.png';
-
-SwiperCore.use([Thumbs, Autoplay]);
-
-const TESTIMONIALS_DATA = [
+const TESTIMONIALS = [
   {
-    image: img1,
-    heading: 'Pierre Hackett',
-    designation: 'VP of Engineering',
-    content:
-      'They are doing amazing job with hundred percent customer satisfaction, Love their work and would like to work with them again',
+    initials: 'PH',
+    name: 'Pierre Hackett',
+    role: 'VP of Engineering',
+    company: 'TechCorp',
+    quote: 'They delivered a full-stack platform in record time. 100% satisfaction, clean code, and they actually cared about our product vision. Would hire them again without hesitation.',
+    gradient: 'linear-gradient(135deg, #8D448B, #a855f7)',
+    stars: 5,
   },
   {
-    image: img2,
-    heading: 'Natalia Sanz',
-    designation: 'Head of Technology',
-    content:
-      'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster.',
+    initials: 'NS',
+    name: 'Natalia Sanz',
+    role: 'Head of Technology',
+    company: 'InnovateLabs',
+    quote: 'Exceptional technical depth and impeccable communication throughout. They anticipated problems before they became issues and always delivered ahead of schedule.',
+    gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+    stars: 5,
   },
   {
-    image: img3,
-    heading: 'Ece Akman',
-    designation: 'Senior Marketer',
-    content:
-      'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal.',
-  },
-  {
-    image: img2,
-    heading: 'Natalia Sanz',
-    designation: 'Head of Technology',
-    content:
-      'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional.',
-  },
-  {
-    image: img3,
-    heading: 'Ece Akman',
-    designation: 'Senior Marketer',
-    content:
-      'Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base.',
+    initials: 'EA',
+    name: 'Ece Akman',
+    role: 'Senior Product Manager',
+    company: 'ScaleUp',
+    quote: 'A refreshingly honest team. They didn\'t just build what we asked — they challenged assumptions and helped us build a better product. True partners, not just vendors.',
+    gradient: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
+    stars: 5,
   },
 ];
 
-const Testimonials = () => {
-  // store thumbs swiper instance
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-  const infoParams = {
-    spaceBetween: 15,
-    slidesPerView: 3,
-    autoplay: {
-      delay: 5000,
-    },
-    breakpoints: {
-      576: {
-        slidesPerView: 2,
-        spaceBetween: 30,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      992: {
-        slidesPerView: 3,
-        spaceBetween: 60,
-      },
-    },
-  };
-  const contentParams = {
-    spaceBetween: 0,
-    slidesPerView: 1,
-    autoHeight: true,
-    autoplay: {
-      delay: 5000,
-    },
-  };
+function Stars({ count }) {
   return (
-    <Box as="section" id="testimonials" sx={styles.testimonials}>
-      <Container>
-        <BlockTitle
-          // slogan="Customer Comments"
-          title="Why customers love us"
-          styles={styles.blockTitle}
-        />
-        <Swiper
-          id="testimonialsContent"
-          thumbs={{ swiper: thumbsSwiper }}
-          {...contentParams}
-        >
-          {TESTIMONIALS_DATA.map((testimonialText, index) => (
-            <SwiperSlide key={`testimonial-content-${index}`}>
-              <Text sx={styles.testimonialsContent} as="p">
-                {testimonialText.content}
-              </Text>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <Swiper
-          id="testimonialsInfo"
-          onSwiper={setThumbsSwiper}
-          watchSlidesVisibility
-          watchSlidesProgress
-          {...infoParams}
-        >
-          {TESTIMONIALS_DATA.map((testimonial, index) => (
-            <SwiperSlide key={`testimonial-info-${index}`}>
-              {/* <Image src={testimonial.image} alt="testimonials image" /> */}
-              {/* <Heading as="h3">{testimonial.heading}</Heading>
-              <Text as="span">{testimonial.designation}</Text> */}
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Container>
-    </Box>
+    <div style={{ display: 'flex', gap: 3, marginBottom: 16 }}>
+      {Array.from({ length: count }).map((_, i) => (
+        <svg key={i} width={16} height={16} viewBox="0 0 20 20" fill="#FBBF24"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+      ))}
+    </div>
   );
-};
+}
 
-export default Testimonials;
+export default function Testimonials() {
+  return (
+    <section id="testimonials" style={{ padding: '96px 0', background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
 
-const styles = {
-  testimonials: {
-    pt: ['65px', null, null, null, null, '80px', '170px'],
-    '.blockTitle': {
-      textAlign: 'center',
-      marginBottom: ['25px', null, null, null, null, '50px'],
-    },
-    '#testimonialsInfo': {
-      textAlign: ['center', null, null, null, null, 'left'],
-      marginTop: ['30px', null, null, null, '40px', '50px'],
-      width: '100%',
-      maxWidth: '820px',
-      '.swiper-slide': {
-        cursor: 'pointer',
-        borderTop: [
-          '5px solid transparent',
-          null,
-          null,
-          null,
-          null,
-          '5px solid transparent',
-        ],
-        position: 'relative',
-        paddingLeft: ['0', null, null, null, null, '75px'],
-        paddingTop: ['0', null, null, null, null, '25px'],
-        paddingBottom: ['0', null, null, null, null, '15px'],
-        minHeight: ['auto', null, null, null, null, '50px'],
-        '&.swiper-slide-thumb-active': {
-          borderColor: '#8D448B',
-        },
-      },
-      img: {
-        borderRadius: '50%',
-        display: 'block',
-        marginLeft: ['auto', null, null, null, null, '0'],
-        marginRight: ['auto', null, null, null, null, '0'],
-        marginBottom: ['15px', null, null, null, null, '0'],
-        position: ['relative', null, null, null, null, 'absolute'],
-        top: ['auto', null, null, null, null, '50%'],
-        left: ['auto', null, null, null, null, '10px'],
-        mt: ['10px', null, null, null, null, 0],
-        transform: [
-          'translateY(0)',
-          null,
-          null,
-          null,
-          null,
-          'translateY(calc(-50% + 8px))',
-        ],
-      },
-      h3: {
-        fontSize: ['18px', null, 2, null, 3],
-        lineHeight: 1,
-        color: 'black',
-        display: ['none', null, 'block'],
-      },
-      span: {
-        color: 'text',
-        opacity: '0.8',
-        fontSize: [15, null, '15px'],
-        lineHeight: 1,
-        display: 'block',
-        display: ['none', null, 'block'],
-        marginTop: '10px',
-      },
-    },
-  },
-  testimonialsContent: {
-    margin: 0,
-    fontSize: [2, null, 3, null, 4, '32px', 7],
-    color: 'black',
-    lineHeight: [2.3, null, 1.8],
-    textAlign: 'center',
-    fontFamily: 'special',
-    width: '100%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: '820px',
-    marginTop: ['0', null, null, null, null, '-15px'],
-  },
-};
+      {/* Subtle bg accent */}
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(141,68,139,0.06), transparent 70%)', pointerEvents: 'none' }} />
+
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', maxWidth: 520, margin: '0 auto 64px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 100, border: '1px solid rgba(141,68,139,0.25)', background: 'rgba(141,68,139,0.06)', marginBottom: 20 }}>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8D448B' }}>Client Stories</span>
+          </div>
+          <h2 style={{ fontSize: 'clamp(30px, 4vw, 48px)', fontWeight: 900, color: '#0a0a14', letterSpacing: '-0.03em', lineHeight: 1.15, margin: '0 0 16px' }}>
+            Why clients{' '}
+            <span style={{ background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>love us</span>
+          </h2>
+          <p style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7 }}>
+            Real words from real clients who experienced the SthithaKoushalam difference.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="testimonial-grid">
+          {TESTIMONIALS.map((t, i) => (
+            <div
+              key={i}
+              style={{ background: '#fff', borderRadius: 24, padding: '32px 32px 28px', border: '1.5px solid #f1f5f9', boxShadow: '0 2px 16px rgba(0,0,0,0.04)', transition: 'all 0.3s', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 48px rgba(141,68,139,0.12)'; e.currentTarget.style.borderColor = 'rgba(141,68,139,0.2)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 16px rgba(0,0,0,0.04)'; e.currentTarget.style.borderColor = '#f1f5f9'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            >
+              {/* Giant quote mark */}
+              <div style={{ position: 'absolute', top: 16, right: 24, fontSize: 80, lineHeight: 1, color: 'rgba(141,68,139,0.07)', fontFamily: 'Georgia, serif', pointerEvents: 'none', userSelect: 'none' }}>"</div>
+
+              <Stars count={t.stars} />
+
+              <p style={{ fontSize: 15, color: '#334155', lineHeight: 1.7, flex: 1, marginBottom: 28, position: 'relative' }}>
+                "{t.quote}"
+              </p>
+
+              {/* Author */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 24, borderTop: '1px solid #f1f5f9' }}>
+                <div style={{ width: 42, height: 42, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 14, flexShrink: 0, background: t.gradient }}>
+                  {t.initials}
+                </div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>{t.name}</div>
+                  <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>{t.role} · {t.company}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .testimonial-grid { grid-template-columns: 1fr !important; max-width: 560px; margin: 0 auto; }
+        }
+        @media (max-width: 700px) and (min-width: 480px) {
+          .testimonial-grid { grid-template-columns: 1fr 1fr !important; max-width: 100%; }
+        }
+      `}</style>
+    </section>
+  );
+}
