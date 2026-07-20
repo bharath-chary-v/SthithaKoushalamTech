@@ -12,3 +12,7 @@
 /.next/
 /out/
 
+# OS / editor
+.DS_Store
+.claude/
+

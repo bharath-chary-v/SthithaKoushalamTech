@@ -1,9 +1,15 @@
-/* Brand variables */
+/* Brand variables — steel blue / cyan, matching the logo's globe + gear + circuit mark */
 :root {
-  --brand: #8D448B;
-  --brand-dark: #6B3069;
-  --brand-light: #fdf4fd;
-  --brand-border: rgba(141, 68, 139, 0.3);
+  --ink: #050b18;
+  --ink-2: #0b1730;
+  --brand: #2563eb;
+  --brand-dark: #1d4ed8;
+  --brand-2: #06b6d4;
+  --brand-3: #38bdf8;
+  --silver: #94a3b8;
+  --brand-light: #eff6ff;
+  --brand-border: rgba(37, 99, 235, 0.3);
+  --gradient-brand: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
 }
 
 html {
@@ -30,8 +36,29 @@ a {
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, #8D448B 0%, #6366f1 100%);
+  background: var(--gradient-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }

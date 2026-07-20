@@ -57,12 +57,12 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#070711', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+    <footer style={{ background: 'var(--ink)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
 
         {/* CTA Banner */}
-        <div style={{ margin: '64px 0', borderRadius: 28, padding: '56px 64px', background: 'linear-gradient(135deg, #1a0a1e 0%, #0d0d2b 100%)', border: '1px solid rgba(141,68,139,0.2)', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 32 }} className="cta-banner">
-          <div style={{ position: 'absolute', top: '-30%', right: '10%', width: 300, height: 300, background: 'radial-gradient(circle, rgba(141,68,139,0.3), transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ margin: '64px 0', borderRadius: 28, padding: '56px 64px', background: 'linear-gradient(135deg, #0b1730 0%, #050b18 100%)', border: '1px solid rgba(37,99,235,0.2)', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 32 }} className="cta-banner">
+          <div style={{ position: 'absolute', top: '-30%', right: '10%', width: 300, height: 300, background: 'radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
           <div style={{ position: 'relative' }}>
             <h3 style={{ fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 900, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 8px' }}>
               Ready to build something great?
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
           <ScrollLink
             to="contact" smooth offset={-80} duration={500}
-            style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', borderRadius: 100, fontSize: 15, fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)', boxShadow: '0 0 32px rgba(141,68,139,0.4)', flexShrink: 0, transition: 'all 0.2s', position: 'relative' }}
+            style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', borderRadius: 100, fontSize: 15, fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)', boxShadow: '0 0 32px rgba(37,99,235,0.4)', flexShrink: 0, transition: 'all 0.2s', position: 'relative' }}
             onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
           >
@@ -95,7 +95,7 @@ export default function Footer() {
             <div style={{ display: 'flex', gap: 10 }}>
               {SOCIALS.map(s => (
                 <a key={s.label} href={s.href} aria-label={s.label} style={{ width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', transition: 'all 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#8D448B'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#8D448B'; }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#2563eb'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#2563eb'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; }}
                 >
                   {s.icon}
@@ -128,7 +128,7 @@ export default function Footer() {
             © {new Date().getFullYear()} SthithaKoushalam Tech. All rights reserved.
           </p>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', margin: 0, display: 'flex', alignItems: 'center', gap: 6 }}>
-            Made with <span style={{ color: '#8D448B', fontSize: 16 }}>♥</span> in India
+            Made with <span style={{ color: '#2563eb', fontSize: 16 }}>♥</span> in India
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Reveal from 'components/reveal';
 
 const STEPS = [
   {
@@ -31,35 +32,49 @@ export default function HowWeWork() {
   return (
     <section id="process" style={{ padding: '96px 0', background: '#f8fafc' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 72px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 100, border: '1px solid rgba(141,68,139,0.25)', background: 'rgba(141,68,139,0.06)', marginBottom: 20 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8D448B' }}>Our Process</span>
+        <Reveal>
+          <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 72px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 100, border: '1px solid rgba(37,99,235,0.25)', background: 'rgba(37,99,235,0.06)', marginBottom: 20 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2563eb' }}>Our Process</span>
+            </div>
+            <h2 style={{ fontSize: 'clamp(30px, 4vw, 48px)', fontWeight: 900, color: '#0a0a14', letterSpacing: '-0.03em', lineHeight: 1.15, margin: '0 0 16px' }}>
+              How we{' '}
+              <span style={{ backgroundImage: 'var(--gradient-brand)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>deliver</span>
+            </h2>
+            <p style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7 }}>
+              A proven four-step process designed to turn your vision into a live, scalable product.
+            </p>
           </div>
-          <h2 style={{ fontSize: 'clamp(30px, 4vw, 48px)', fontWeight: 900, color: '#0a0a14', letterSpacing: '-0.03em', lineHeight: 1.15, margin: '0 0 16px' }}>
-            How we{' '}
-            <span style={{ background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>deliver</span>
-          </h2>
-          <p style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7 }}>
-            A proven four-step process designed to turn your vision into a live, scalable product.
-          </p>
-        </div>
+        </Reveal>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, position: 'relative' }} className="steps-grid">
-          <div style={{ position: 'absolute', top: 52, left: '12.5%', right: '12.5%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(141,68,139,0.3) 15%, rgba(141,68,139,0.3) 85%, transparent)' }} className="connector-line" />
+          <div style={{ position: 'absolute', top: 52, left: '12.5%', right: '12.5%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.3) 15%, rgba(37,99,235,0.3) 85%, transparent)' }} className="connector-line" />
 
           {STEPS.map((step, i) => (
-            <div key={i} style={{ position: 'relative', padding: '0 20px', textAlign: 'center' }} className="step-item">
-              <div
-                style={{ width: 104, height: 104, borderRadius: '50%', margin: '0 auto 28px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fff', border: '2px solid #e2e8f0', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', transition: 'all 0.3s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#8D448B'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(141,68,139,0.2)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.06)'; }}
-              >
-                <div style={{ color: '#8D448B', marginBottom: 4 }}>{step.icon}</div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#8D448B', letterSpacing: '0.08em' }}>{step.num}</div>
+            <Reveal key={i} delay={0.1 * i}>
+              <div style={{ position: 'relative', padding: '0 20px', textAlign: 'center' }} className="step-item">
+                <div
+                  className="step-ring"
+                  style={{ position: 'relative', width: 104, height: 104, borderRadius: '50%', margin: '0 auto 28px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fff', border: '2px solid #e2e8f0', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', transition: 'all 0.3s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(37,99,235,0.22)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.06)'; }}
+                >
+                  <svg width={124} height={124} viewBox="0 0 124 124" style={{ position: 'absolute', top: -10, left: -10, animation: 'spin-slow 18s linear infinite' }}>
+                    {Array.from({ length: 12 }).map((_, t) => {
+                      const angle = (t / 12) * Math.PI * 2;
+                      const r1 = 52, r2 = 60;
+                      const x1 = (62 + r1 * Math.cos(angle)).toFixed(2), y1 = (62 + r1 * Math.sin(angle)).toFixed(2);
+                      const x2 = (62 + r2 * Math.cos(angle)).toFixed(2), y2 = (62 + r2 * Math.sin(angle)).toFixed(2);
+                      return <line key={t} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#bfdbfe" strokeWidth="2.5" strokeLinecap="round" />;
+                    })}
+                  </svg>
+                  <div style={{ color: '#2563eb', marginBottom: 4 }}>{step.icon}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: '#2563eb', letterSpacing: '0.08em' }}>{step.num}</div>
+                </div>
+                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0a0a14', marginBottom: 10, letterSpacing: '-0.02em' }}>{step.title}</h3>
+                <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.65 }}>{step.desc}</p>
               </div>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0a0a14', marginBottom: 10, letterSpacing: '-0.02em' }}>{step.title}</h3>
-              <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.65 }}>{step.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

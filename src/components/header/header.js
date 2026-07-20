@@ -46,7 +46,7 @@ export default function Header() {
                   transition: 'color 0.2s',
                   letterSpacing: '-0.01em',
                 }}
-                onMouseEnter={e => e.target.style.color = scrolled ? '#8D448B' : '#ffffff'}
+                onMouseEnter={e => e.target.style.color = scrolled ? '#2563eb' : '#ffffff'}
                 onMouseLeave={e => e.target.style.color = scrolled ? '#374151' : 'rgba(255,255,255,0.75)'}
               >
                 {label}
@@ -66,10 +66,10 @@ export default function Header() {
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '9px 20px', borderRadius: 100,
                 fontSize: 13, fontWeight: 600,
-                background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)',
+                background: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)',
                 color: '#fff',
                 transition: 'all 0.2s',
-                boxShadow: '0 2px 16px rgba(141,68,139,0.35)',
+                boxShadow: '0 2px 16px rgba(37,99,235,0.35)',
               }}
               className="cta-btn"
               onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
@@ -120,7 +120,7 @@ export default function Header() {
                 fontSize: 15, fontWeight: 500, color: '#374151', cursor: 'pointer',
                 marginBottom: 2,
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#f5f3ff'; e.currentTarget.style.color = '#8D448B'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#eff6ff'; e.currentTarget.style.color = '#2563eb'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#374151'; }}
             >
               {label}
@@ -132,7 +132,7 @@ export default function Header() {
             style={{
               display: 'block', marginTop: 12, padding: '13px 20px', borderRadius: 100,
               textAlign: 'center', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer',
-              background: 'linear-gradient(135deg, #8D448B 0%, #6366f1 100%)',
+              background: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)',
             }}
           >
             Get In Touch
