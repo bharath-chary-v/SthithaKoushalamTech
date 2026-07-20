@@ -4,12 +4,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "next build",
-    "serve": "next start",
-    "export": "next export"
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider next start",
+    "export": "NODE_OPTIONS=--openssl-legacy-provider next export"
+  },
+  "engines": {
+    "node": "24.x"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.2.6",
