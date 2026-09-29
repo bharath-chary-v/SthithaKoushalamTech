@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as ScrollLink } from 'react-scroll';
-import logo from 'assets/2.png';
+import logo from 'assets/logo-sthithas-light.png';
 
 const COLS = [
   {
@@ -87,7 +87,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <ScrollLink to="banner" smooth duration={500} style={{ cursor: 'pointer', display: 'inline-block', marginBottom: 20 }}>
-              <img src={logo} alt="SthithaKoushalam Tech" style={{ height: 44, width: 'auto' }} />
+              <img src={logo} alt="Sthitha's" style={{ height: 64, width: 'auto' }} />
             </ScrollLink>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.35)', lineHeight: 1.7, maxWidth: 280, marginBottom: 24 }}>
               Pioneering global expansion while illuminating India's future through world-class technology.
