@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import menuItems from './header.data';
-import logo from 'assets/2.png';
+import logo from 'assets/logo-sthithas.png';
+import logoLight from 'assets/logo-sthithas-light.png';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,19 +28,18 @@ export default function Header() {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
           {/* Logo */}
           <ScrollLink to="banner" smooth duration={500} offset={-80} style={{ cursor: 'pointer', flexShrink: 0 }}>
-            <img src={logo} alt="SthithaKoushalam Tech" style={{ height: 44, width: 'auto' }} />
+            <img src={scrolled ? logo : logoLight} alt="Sthitha's" style={{ height: 52, width: 'auto' }} />
           </ScrollLink>
 
           {/* Desktop nav */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: 40 }} className="desktop-nav">
-            {menuItems.map(({ path, label }, i) => (
-              <ScrollLink
+            {menuItems.map(({ path, href, label }, i) => {
+              const NavLink = href ? 'a' : ScrollLink;
+              const linkProps = href ? { href, target: '_blank', rel: 'noopener noreferrer' } : { to: path, spy: true, smooth: true, offset: -80, duration: 500 };
+              return (
+              <NavLink
                 key={i}
-                to={path}
-                spy
-                smooth
-                offset={-80}
-                duration={500}
+                {...linkProps}
                 style={{
                   fontSize: 14, fontWeight: 500, cursor: 'pointer',
                   color: scrolled ? '#374151' : 'rgba(255,255,255,0.75)',
@@ -50,8 +50,9 @@ export default function Header() {
                 onMouseLeave={e => e.target.style.color = scrolled ? '#374151' : 'rgba(255,255,255,0.75)'}
               >
                 {label}
-              </ScrollLink>
-            ))}
+              </NavLink>
+              );
+            })}
           </nav>
 
           {/* CTA + mobile toggle */}
@@ -109,11 +110,13 @@ export default function Header() {
           borderBottom: '1px solid rgba(0,0,0,0.06)',
           padding: '16px 24px 24px',
         }}>
-          {menuItems.map(({ path, label }, i) => (
-            <ScrollLink
+          {menuItems.map(({ path, href, label }, i) => {
+            const NavLink = href ? 'a' : ScrollLink;
+            const linkProps = href ? { href, target: '_blank', rel: 'noopener noreferrer' } : { to: path, spy: true, smooth: true, offset: -80, duration: 500 };
+            return (
+            <NavLink
               key={i}
-              to={path}
-              spy smooth offset={-80} duration={500}
+              {...linkProps}
               onClick={() => setMobileOpen(false)}
               style={{
                 display: 'block', padding: '12px 16px', borderRadius: 10,
@@ -124,8 +127,9 @@ export default function Header() {
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#374151'; }}
             >
               {label}
-            </ScrollLink>
-          ))}
+            </NavLink>
+            );
+          })}
           <ScrollLink
             to="contact" smooth offset={-80} duration={500}
             onClick={() => setMobileOpen(false)}

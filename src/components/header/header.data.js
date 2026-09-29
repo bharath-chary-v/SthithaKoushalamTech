@@ -4,4 +4,5 @@ export default [
   { path: 'process', label: 'Process' },
   { path: 'aboutUs', label: 'About' },
   { path: 'testimonials', label: 'Testimonials' },
+  { href: 'https://placements.sthithakoushalam.tech/', label: 'Placements' },
 ];
