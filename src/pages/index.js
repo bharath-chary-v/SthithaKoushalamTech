@@ -5,6 +5,7 @@ import Banner from 'sections/banner';
 import Services from 'sections/customer-support';
 import HowWeWork from 'sections/video-one';
 import AboutUs from 'sections/aboutUs';
+import Ventures from 'sections/ventures';
 import TechStack from 'sections/call-to-action';
 import Testimonials from 'sections/testimonials';
 import Contact from 'sections/feature';
@@ -18,6 +19,7 @@ export default function IndexPage() {
         <Services />
         <HowWeWork />
         <AboutUs />
+        <Ventures />
         <TechStack />
         <Testimonials />
         <Contact />
