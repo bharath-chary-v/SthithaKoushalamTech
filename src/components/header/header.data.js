@@ -5,4 +5,5 @@ export default [
   { path: 'aboutUs', label: 'About' },
   { path: 'testimonials', label: 'Testimonials' },
   { href: 'https://placements.sthithakoushalam.tech/', label: 'Placements' },
+  { href: 'https://speaks.sthithakoushalam.tech/', label: 'Speaks' },
 ];
